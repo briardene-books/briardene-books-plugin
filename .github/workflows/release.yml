@@ -1,0 +1,37 @@
+name: Release Plugin Zip
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up variables
+        id: vars
+        run: |
+          VERSION=$(grep -Po 'Version:\s*\K[^\s]+' briardene-books.php)
+          DATE=$(date +%Y-%m-%d)
+          TAG="v${VERSION}-${DATE}"
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "date=$DATE" >> $GITHUB_OUTPUT
+          echo "tag=$TAG" >> $GITHUB_OUTPUT
+
+      - name: Zip plugin
+        run: |
+          mkdir dist
+          zip -r dist/briardene-books-${{ steps.vars.outputs.version }}-${{ steps.vars.outputs.date }}.zip . -x '*.git*' 'dist/*' '.github/*'
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.vars.outputs.tag }}
+          name: Release ${{ steps.vars.outputs.version }} (${{ steps.vars.outputs.date }})
+          files: dist/briardene-books-${{ steps.vars.outputs.version }}-${{ steps.vars.outputs.date }}.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

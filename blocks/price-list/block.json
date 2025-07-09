@@ -1,0 +1,12 @@
+{
+  "apiVersion": 2,
+  "name": "briardene/price-list",
+  "title": "Price List",
+  "category": "woocommerce-product-elements",
+  "icon": "list-view",
+  "description": "Show a list of all product variations and their prices.",
+  "supports": {
+    "html": false
+  },
+  "textdomain": "briardene-books"
+}

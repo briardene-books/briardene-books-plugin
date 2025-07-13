@@ -249,7 +249,7 @@ function briardene_render_price_list_block($attributes, $content) {
   foreach ($variations as $variation) {
     $name_parts = [];
     foreach ($attribute_keys as $attr) {
-      $value = isset($variation['attributes']['attribute_' . $attr]) ? $variation['attributes']['attribute_' . $attr] : '';
+      $value = isset($variation['attributes']['attribute_' . strtolower($attr)]) ? $variation['attributes']['attribute_' . strtolower($attr)] : '';
       if ($value) {
         if (taxonomy_exists($attr)) {
           $display_value = $value;

@@ -2,11 +2,10 @@
 /*
  * Plugin Name: Briardene Books
  * Description: Customizations for the Briardene Books WooCommerce store.
- * Version: 1.0.0
+ * Version: {{ VERSION }}
  * Author: Andrew January
  * Author URI: https://ajanuary.com
- * License: GPL-2.0+
- * License URI: https://www.gnu.org/licenses/gpl-2.0.html
+ * License: MIT
  * Text Domain: briardene-books
  */
 

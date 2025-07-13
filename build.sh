@@ -12,7 +12,7 @@ if [ -n "$GITHUB_SHA" ]; then
 else
   IDENTIFIER="$(hostname)"
 fi
-VERSION="$(date +"%Y.%m.%d.%H%M%S")+$IDENTIFIER"
+VERSION="$(TZ=UTC date +"%Y.%m.%d.%H%M%S")+$IDENTIFIER"
 
 SAFE_VERSION=$(echo "$VERSION" | tr '+.' '--')
 DIST_FILE="$DIST_DIR/$PROJECT_NAME-$SAFE_VERSION.zip"
